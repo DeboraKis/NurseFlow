@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Progress | NurseFlow</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-content">
+      <h1>My Progress</h1>
+      <p>Your training progress will be displayed below.</p>
+      <button onclick="location.href='index.html'">Back to Home</button>
+    </div>
+  </header>
+
+  <main class="main-section">
+    <section class="card">
+      <h2>Your Progress Log</h2>
+      <table id="progress-table">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Trainee's progress will be inserted here -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    // Fetch the logged-in trainee's data
+    const trainee = JSON.parse(localStorage.getItem("currentTrainee"));
+
+    if (trainee) {
+      const progressTable = document.getElementById("progress-table").getElementsByTagName("tbody")[0];
+
+      // Simulate progress for each day (e.g., mark completed days)
+      const days = [1, 2, 3, 4, 5]; // You can add all your days here
+      days.forEach(day => {
+        const row = progressTable.insertRow();
+        const dayCell = row.insertCell(0);
+        const statusCell = row.insertCell(1);
+
+        dayCell.textContent = `Day ${day}`;
+        statusCell.innerHTML = `<button onclick="markCompleted(${day})">${trainee.progress[`day${day}`] ? 'Completed' : 'Mark Completed'}</button>`;
+      });
+    }
+
+    function markCompleted(day) {
+      // Get the current trainee data and mark this day as completed
+      const trainee = JSON.parse(localStorage.getItem("currentTrainee"));
+      trainee.progress[`day${day}`] = true;
+
+      // Save the updated progress in localStorage
+      localStorage.setItem("currentTrainee", JSON.stringify(trainee));
+
+      // Update the button to say 'Completed'
+      const row = document.querySelector(`#progress-table button[onclick="markCompleted(${day})"]`);
+      row.textContent = 'Completed';
+    }
+  </script>
+
+</body>
+</html>

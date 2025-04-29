@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NurseFlow | Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Card container */
+    #learning-path-card {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    /* Day block */
+    .day-block {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 1rem;
+    }
+    .day-block h3 {
+      margin: 0 0 0.5rem;
+      color: #439351;
+    }
+    /* Buttons */
+    .btn-toggle, .btn-complete {
+      background-color: #65cf30;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 0.5rem;
+      transition: background-color 0.2s;
+    }
+    .btn-toggle:hover, .btn-complete:hover {
+      background-color: #439351;
+    }
+    .btn-complete.completed {
+      background-color: #f74166;
+    }
+    /* Steps list hidden by default */
+    .steps {
+      display: none;
+      margin-top: 0.75rem;
+      padding-left: 1.25rem;
+    }
+    .steps ul {
+      margin: 0;
+      padding-left: 1rem;
+    }
+    .steps li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Welcome to NurseFlow</h1>
+      <p>Training Made Simple for New Dental Nurses</p>
+      <button onclick="location.href='track.html'">Start Learning</button>
+      <button onclick="location.href='trainee.html'">My Progress</button>
+      <button onclick="location.href='admin.html'">Admin Panel</button>
+    </div>
+  </header>
+
+  <main class="main-section">
+    <section id="learning-path-card">
+      <h2>Learning Path Overview</h2>
+      <div id="learning-path"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 NurseFlow. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const days = [
+      { name: "Day 1: Sterilization & PPE", steps: [
+        "Step 1: Learn sterilization routines and instrument setup",
+        "Step 2: Review infection control protocols (OSHA standards, bloodborne pathogens, etc.)",
+        "Step 3: Familiarize with autoclave operation and maintenance",
+        "Step 4: Understand personal protective equipment (PPE) protocols and usage"
+      ]},
+      { name: "Day 2: Disinfection & Handwashing", steps: [
+        "Step 1: Learn how to disinfect dental operatory and equipment",
+        "Step 2: Practice proper handwashing techniques",
+        "Step 3: Learn about different dental instruments and their uses",
+        "Step 4: Organize instruments into sets for specific procedures"
+      ]},
+      { name: "Day 3: Patient Intake & Vital Signs", steps: [
+        "Step 1: Introduction to patient intake and medical history review",
+        "Step 2: Understand how to take patient vitals (blood pressure, temperature, pulse)",
+        "Step 3: Practice patient seating and positioning techniques",
+        "Step 4: Learn to prepare the dental chair and surrounding area"
+      ]},
+      { name: "Day 4: Charting & X-ray Protocols", steps: [
+        "Step 1: Understand and practice basic charting (clinical notes, patient records)",
+        "Step 2: Familiarize with the dental unit (operatory lights, suction, water syringe)",
+        "Step 3: Learn basic dental terminology",
+        "Step 4: Introduction to dental X-rays and safety protocols"
+      ]},
+      { name: "Day 5: Procedure Practice & Review", steps: [
+        "Step 1: Review sterilization and infection control methods",
+        "Step 2: Practice assisting with basic dental procedures (fillings, cleanings, extractions)",
+        "Step 3: Learn how to prepare dental materials (mixing composite, alginate, etc.)",
+        "Step 4: End-of-week review and Q&A session"
+      ]},
+      // Week 2: Days 6–10
+      { name: "Day 6: Prophylaxis & Fluoride", steps: [
+        "Step 1: Learn how to prepare for and assist with a basic dental cleaning (prophylaxis)",
+        "Step 2: Practice passing instruments during cleanings and exams",
+        "Step 3: Familiarize with fluoride application techniques",
+        "Step 4: Assist in post-procedure patient care (comfort, instructions)"
+      ]},
+      { name: "Day 7: Extractions & Suturing", steps: [
+        "Step 1: Review the steps of dental extractions and assist in preparation",
+        "Step 2: Learn about suturing techniques and post-operative care",
+        "Step 3: Learn about the use of local anesthetics in procedures",
+        "Step 4: Practice mixing dental materials (cement, temporary fillings)"
+      ]},
+      { name: "Day 8: Restorative & Impressions", steps: [
+        "Step 1: Observe and assist with restorative procedures (fillings, crowns)",
+        "Step 2: Review the process of taking impressions for crowns/bridges",
+        "Step 3: Understand the use of dental suction systems during procedures",
+        "Step 4: Familiarize with rubber dams and their purpose in dental procedures"
+      ]},
+      { name: "Day 9: Endo & Implants Intro", steps: [
+        "Step 1: Introduction to root canal therapy and assisting during the procedure",
+        "Step 2: Learn about dental implants and preparation for implantation",
+        "Step 3: Understand different dental materials (composites, amalgams, etc.)",
+        "Step 4: Practice patient communication (explaining procedures, aftercare instructions)"
+      ]},
+      { name: "Day 10: Emergency Procedures & Review", steps: [
+        "Step 1: Review basic emergency procedures (CPR, first aid)",
+        "Step 2: Learn how to manage medical emergencies in the dental office (syncope, allergic reactions)",
+        "Step 3: Assist in patient follow-up calls and care instructions post-procedure",
+        "Step 4: End-of-week review and feedback session"
+      ]},
+      // Week 3: Days 11–15
+      { name: "Day 11: Periodontal & Restorative Advanced", steps: [
+        "Step 1: Learn about dental hygiene tools and their proper use",
+        "Step 2: Assist in periodontal procedures (scaling and root planing)",
+        "Step 3: Understand and assist with advanced restorative work (crowns, bridges)",
+        "Step 4: Observe and assist with diagnostic procedures (oral cancer screenings)"
+      ]},
+      { name: "Day 12: Pediatric Dentistry", steps: [
+        "Step 1: Introduction to pediatric dentistry and specific child care protocols",
+        "Step 2: Assist in pediatric exams and cleanings",
+        "Step 3: Learn about space maintainers and pediatric sealants",
+        "Step 4: Practice managing child patient behavior in the chair"
+      ]},
+      { name: "Day 13: Orthodontic Assisting", steps: [
+        "Step 1: Understand the principles of orthodontics and assisting with braces placements",
+        "Step 2: Assist in taking orthodontic impressions",
+        "Step 3: Learn how to care for orthodontic appliances (brackets, wires, etc.)",
+        "Step 4: Observe orthodontic adjustments and the role of the dental nurse"
+      ]},
+      { name: "Day 14: Implantology", steps: [
+        "Step 1: Review implantology and assist with dental implant procedures",
+        "Step 2: Learn the steps for preparation of the implant site",
+        "Step 3: Observe and assist with temporary and permanent prosthetic placements",
+        "Step 4: Learn about implant maintenance and care post-surgery"
+      ]},
+      { name: "Day 15: Specialized Procedures Review", steps: [
+        "Step 1: Review advanced sterilization and infection control practices",
+        "Step 2: Learn about and practice managing medical histories for specialized treatments",
+        "Step 3: Assist in cosmetic procedures (teeth whitening, veneers)",
+        "Step 4: End-of-week review and practice session on specialized procedures"
+      ]},
+      // Week 4: Days 16–20
+      { name: "Day 16: Scheduling & Billing", steps: [
+        "Step 1: Learn about patient scheduling and appointment management",
+        "Step 2: Understand insurance billing, codes, and claims processing",
+        "Step 3: Review patient intake forms and documentation standards",
+        "Step 4: Practice interacting with patients for scheduling and follow-up"
+      ]},
+      { name: "Day 17: Office Safety & Software", steps: [
+        "Step 1: Learn about office safety protocols (fire drills, hazardous material handling)",
+        "Step 2: Familiarize with dental office equipment troubleshooting (X-ray machine, sterilizer)",
+        "Step 3: Review patient confidentiality and HIPAA compliance",
+        "Step 4: Practice using the dental office management software"
+      ]},
+      { name: "Day 18: Patient Communication", steps: [
+        "Step 1: Review patient communication skills (dealing with anxious patients)",
+        "Step 2: Learn how to provide oral health education to patients",
+        "Step 3: Assist with post-operative care and patient instructions",
+        "Step 4: Review the dental emergency procedures for patients"
+      ]},
+      { name: "Day 19: Full Exam & Complex Procedures", steps: [
+        "Step 1: Review all procedures learned and practice assisting with full exam setups",
+        "Step 2: Observe and assist in complex procedures like full-mouth extractions",
+        "Step 3: Practice preparing and managing materials for a range of procedures",
+        "Step 4: Participate in a mock clinical session where you take the lead on assisting"
+      ]},
+      { name: "Day 20: Final Review & Certification", steps: [
+        "Step 1: Final review of all sterilization, infection control, and patient care protocols",
+        "Step 2: Conduct a hands-on practice session for all procedures",
+        "Step 3: Complete a written quiz or assessment covering all key topics",
+        "Step 4: Final feedback and certification of completion of training"
+      ]}
+    ];
+
+    const container = document.getElementById("learning-path");
+
+    days.forEach((day, i) => {
+      const idx = i + 1;
+      const block = document.createElement("div");
+      block.className = "day-block";
+      block.id = `day${idx}`;
+
+      block.innerHTML = `
+        <h3>${day.name}</h3>
+        <button class="btn-toggle" data-idx="${idx}">View Steps</button>
+        <button class="btn-complete" data-idx="${idx}">Mark as Completed</button>
+        <div class="steps" id="steps${idx}">
+          <ul>${day.steps.map(s => `<li>${s}</li>`).join("")}</ul>
+        </div>
+      `;
+      container.appendChild(block);
+    });
+
+    // Event delegation for toggle and complete
+    document.getElementById("learning-path").addEventListener("click", e => {
+      if (e.target.matches(".btn-toggle")) {
+        const id = e.target.dataset.idx;
+        const steps = document.getElementById(`steps${id}`);
+        steps.style.display = (steps.style.display === "block" ? "none" : "block");
+      }
+      if (e.target.matches(".btn-complete")) {
+        const id = e.target.dataset.idx;
+        const btn = e.target;
+        btn.textContent = "Completed";
+        btn.classList.add("completed");
+        // optionally hide steps when completed:
+        document.getElementById(`steps${id}`).style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

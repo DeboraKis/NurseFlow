@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- … -->
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Override only for the admin table card */
+    #admin-table-card {
+      width: 90%;
+      max-width: 900px;
+      margin: 2rem auto;     /* center it with some top/bottom space */
+    }
+
+    /* Keep your existing admin table styles */
+    #admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    #admin-table th, #admin-table td {
+      border: 1px solid #ccc;
+      padding: 0.75rem;
+      text-align: left;
+      word-wrap: break-word;
+    }
+    #admin-table th {
+      background-color: #f74166;
+      color: #fff;
+    }
+    /* Action column width */
+    #admin-table th:nth-child(4),
+    #admin-table td:nth-child(4) {
+      width: 150px;
+      text-align: center;
+    }
+    /* Button styling */
+    .signoff-btn {
+      background-color: #65cf30;
+      color: white;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .signoff-btn:hover {
+      background-color: #439351;
+    }
+    .signed {
+      color: #65CF30;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <!-- … -->
+  </header>
+
+  <main class="main-section">
+    <!-- Give this section a custom ID so we can widen it -->
+    <section id="admin-table-card" class="card">
+      <h2>Trainee Progress</h2>
+      <table id="admin-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date Completed</th>
+            <th>Day #</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- populated by admin.js -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>

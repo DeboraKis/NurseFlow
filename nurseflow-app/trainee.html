@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trainee Setup | NurseFlow</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .trainee-container {
+      max-width: 900px;
+      margin: 3rem auto;
+      background: #fff;
+      border-radius: 20px;
+      display: flex;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .trainee-info {
+      flex: 1;
+      background-color: #439351;
+      color: white;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .trainee-info h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .trainee-info p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    .trainee-form {
+      flex: 1.2;
+      padding: 2rem;
+      background-color: #fff;
+    }
+
+    .trainee-form h3 {
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    .trainee-form form input,
+    .trainee-form form select {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .trainee-form form button {
+      background-color: #f74166;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      width: 100%;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .trainee-form form button:hover {
+      background-color: #e6365c;
+    }
+
+    @media (max-width: 768px) {
+      .trainee-container {
+        flex-direction: column;
+      }
+      .trainee-info {
+        padding: 1.5rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <h1>Welcome to NurseFlow</h1>
+    <p>Let’s set up your trainee profile to get started.</p>
+  </header>
+
+  <main class="trainee-container">
+    <div class="trainee-info">
+      <h2>Hello Future Dental Star!</h2>
+      <p>This short form helps us tailor your onboarding journey. It only takes a minute!</p>
+    </div>
+
+    <div class="trainee-form">
+      <h3>Trainee Information</h3>
+      <form id="trainee-form">
+        <input type="text" id="trainee-name" placeholder="Full Name" required />
+        <input type="text" id="trainee-id" placeholder="Trainee ID or Email" required />
+        <input type="date" id="start-date" required />
+        <input type="text" id="location" placeholder="Training Location" required />
+        <button type="submit">Save & Continue</button>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("trainee-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const trainee = {
+        name: document.getElementById("trainee-name").value.trim(),
+        id: document.getElementById("trainee-id").value.trim(),
+        startDate: document.getElementById("start-date").value,
+        location: document.getElementById("location").value.trim(),
+      };
+
+      localStorage.setItem("traineeProfile", JSON.stringify(trainee));
+      window.location.href = "index.html"; // or wherever you want to send them
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trainee Login | NurseFlow</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* Styling for the login page */
+    .login-container {
+      max-width: 400px;
+      margin: 5rem auto;
+      padding: 2rem;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .login-container input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .login-container button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #f74166;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .login-container button:hover {
+      background-color: #e6365c;
+    }
+
+    .login-container p {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Trainee Login</h2>
+    <form id="login-form">
+      <input type="text" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <p>New trainee? <a href="register.html">Register here</a></p>
+  </div>
+
+  <script>
+    document.getElementById("login-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      // Simulating login validation (here, you can use actual authentication via backend)
+      const traineesData = JSON.parse(localStorage.getItem("traineesData")) || [];
+
+      const trainee = traineesData.find(t => t.email === email && t.password === password);
+      
+      if (trainee) {
+        // Save login session
+        localStorage.setItem("currentTrainee", JSON.stringify(trainee));
+
+        // Redirect to progress page
+        window.location.href = "progress.html";
+      } else {
+        alert("Invalid login credentials.");
+      }
+    });
+  </script>
+
+</body>
+</html>

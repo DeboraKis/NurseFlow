@@ -1,0 +1,183 @@
+/* Base Reset & Typography */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #E1DCDA;
+    color: #333;
+    line-height: 1.5;
+  }
+  
+  /* Hero Header */
+  .hero {
+    background-color: #439351; /* forest green */
+    color: #fff;
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero button {
+    background-color: #f74166; /* vibrant pink */
+    border: none;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .hero button:hover {
+    background-color: #e63559;
+  }
+  
+  /* Main Layout */
+  .main-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  /* Card Component */
+  .card {
+    background-color: #fff;
+    width: 300px;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    text-align: left;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  }
+  .card:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transform: translateY(-4px);
+  }
+  .card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Buttons */
+  button {
+    font-family: inherit;
+  }
+  .card button {
+    background-color: #65CF30; /* lime green */
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .card button:hover {
+    background-color: #439351; /* forest green */
+  }
+  
+  /* Progress Bar (for /progress page) */
+  .progress-bar {
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 20px;
+    margin-top: 1rem;
+  }
+  .progress {
+    background-color: #65CF30; /* lime green */
+    height: 100%;
+    transition: width 0.5s ease;
+  }
+  
+  /* Utility Helpers */
+  .text-center { text-align: center; }
+  .mt-1 { margin-top: 1rem; }
+  .mt-2 { margin-top: 2rem; }
+  .p-1 { padding: 1rem; }
+  .p-2 { padding: 2rem; }
+
+
+  /* Example CSS (Add this to your style.css) */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #65CF30;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer {
+    background-color: #439351;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+.progress-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #f74166;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #e6365c;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+  
